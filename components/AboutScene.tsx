@@ -20,9 +20,9 @@ const card: Variants = {
 };
 
 const PILLARS = [
-  { key: "pillar1", num: "01", icon: "M12 2l8 5v10l-8 5-8-5V7l8-5z" },
-  { key: "pillar2", num: "02", icon: "M12 2L2 12l10 10 10-10L12 2zm0 4.5L17.5 12 12 17.5 6.5 12 12 6.5z" },
-  { key: "pillar3", num: "03", icon: "M12 2C8 8 4 10 4 15a8 8 0 0016 0c0-5-4-7-8-13z" },
+  { key: "pillar1", icon: "M12 2l8 5v10l-8 5-8-5V7l8-5z" },
+  { key: "pillar2", icon: "M12 2L2 12l10 10 10-10L12 2zm0 4.5L17.5 12 12 17.5 6.5 12 12 6.5z" },
+  { key: "pillar3", icon: "M12 2C8 8 4 10 4 15a8 8 0 0016 0c0-5-4-7-8-13z" },
 ];
 
 export default function AboutScene() {
@@ -73,9 +73,6 @@ export default function AboutScene() {
               className="pillar-card group relative overflow-hidden"
               data-hover
             >
-              <span className="pointer-events-none absolute right-5 top-4 font-display text-5xl font-bold text-white/[0.04] transition-colors duration-500 group-hover:text-cyan/10">
-                {p.num}
-              </span>
 
               <div className="relative mx-auto mb-6 flex h-16 w-16 items-center justify-center">
                 <div className="absolute inset-0 rotate-45 rounded-xl border border-cyan/20 transition-all duration-500 group-hover:rotate-[135deg] group-hover:border-cyan/50" />
