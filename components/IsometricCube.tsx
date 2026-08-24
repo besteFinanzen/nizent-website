@@ -16,7 +16,7 @@ import * as THREE from "three";
 
 const CX = 540;
 const CY = 540;
-const DEPTH = 30;
+const DEPTH = 18;
 const BASE_SCALE = 0.0032;
 
 type Pt = [number, number];
@@ -56,11 +56,11 @@ interface Params {
 
 const SECTION_PARAMS: Params[] = [
   { x: 0, y: 1.1, s: 0.72, spread: 0 },      // home — floats above the headline
-  { x: -3.15, y: 0, s: 0.38, spread: 0.05 }, // mpg — peeks from the left edge
-  { x: 3.15, y: 0, s: 0.38, spread: 0.05 },  // dlrg — peeks from the right edge
+  { x: -3.15, y: 0, s: 0.38, spread: 0 },    // mpg — peeks from the left edge
+  { x: 3.15, y: 0, s: 0.38, spread: 0 },     // dlrg — peeks from the right edge
   { x: 0, y: 0.1, s: 0.8, spread: 1 },       // about — fully exploded
-  { x: -3.2, y: 0, s: 0.38, spread: 0.05 },  // services — peeks from the left edge
-  { x: 3.2, y: 0, s: 0.36, spread: 0.15 },   // contact — reassembled at the right edge
+  { x: -3.2, y: 0, s: 0.38, spread: 0 },     // services — peeks from the left edge
+  { x: 3.2, y: 0, s: 0.36, spread: 0 },      // contact — reassembled at the right edge
 ];
 
 const FALLBACK_MARKS = [0.06, 0.26, 0.46, 0.64, 0.8, 0.95];
@@ -73,22 +73,30 @@ function smooth(u: number) {
   return u * u * (3 - 2 * u);
 }
 
+// Region i = [b[i], b[i+1]] settles at P[i]: each transition completes within
+// the first ~22% of the region, then the exact params are held — the cube is
+// always fully settled (and perfectly flush) before the user rests anywhere.
 function paramsAt(p: number, marks: number[]): Params {
   const P = SECTION_PARAMS;
-  if (p <= marks[0]) return P[0];
-  for (let i = 0; i < marks.length - 1; i++) {
-    if (p <= marks[i + 1]) {
-      const span = marks[i + 1] - marks[i] || 1;
-      const u = smooth(Math.min(1, Math.max(0, (p - marks[i]) / span)));
+  const n = P.length;
+  const b: number[] = [0];
+  for (let i = 1; i < n; i++) b.push((marks[i - 1] + marks[i]) / 2);
+  b.push(1);
+
+  for (let i = 0; i < n; i++) {
+    if (p >= b[i] && p <= b[i + 1]) {
+      if (i === 0) return P[0];
+      const segLen = b[i + 1] - b[i] || 1;
+      const w = smooth(Math.min(1, (p - b[i]) / segLen / 0.22));
       return {
-        x: lerp(P[i].x, P[i + 1].x, u),
-        y: lerp(P[i].y, P[i + 1].y, u),
-        s: lerp(P[i].s, P[i + 1].s, u),
-        spread: lerp(P[i].spread, P[i + 1].spread, u),
+        x: lerp(P[i - 1].x, P[i].x, w),
+        y: lerp(P[i - 1].y, P[i].y, w),
+        s: lerp(P[i - 1].s, P[i].s, w),
+        spread: lerp(P[i - 1].spread, P[i].spread, w),
       };
     }
   }
-  return P[P.length - 1];
+  return P[n - 1];
 }
 
 // Shared mouse state (window-level, since the canvas ignores pointer events)
@@ -152,7 +160,7 @@ function Piece({ def, index }: { def: PieceDef; index: number }) {
     const spread = spreadRef.current;
 
     const dist = spread * 170;
-    const bob = Math.sin(t * 0.8 + tumble.phase) * (5 + spread * 16);
+    const bob = Math.sin(t * 0.8 + tumble.phase) * (4 + spread * 14);
 
     mesh.position.set(
       center.x + dir.x * dist,
@@ -206,11 +214,13 @@ export default function IsometricCube({
     smoothMouse.current.y += (mouseState.y - smoothMouse.current.y) * 0.05;
 
     const p = paramsAt(progress, activeMarks);
+    const parallaxX = 0.09 + 0.11 * p.spread;
+    const parallaxY = 0.12 + 0.14 * p.spread;
     g.position.set(p.x, p.y, 0);
     g.scale.setScalar(BASE_SCALE * p.s);
-    g.rotation.x = smoothMouse.current.y * 0.22 + Math.sin(t * 0.21) * 0.04;
-    g.rotation.y = smoothMouse.current.x * 0.3 + Math.sin(t * 0.16) * 0.08;
-    g.rotation.z = Math.sin(t * 0.13) * 0.03;
+    g.rotation.x = smoothMouse.current.y * parallaxX + Math.sin(t * 0.21) * 0.03;
+    g.rotation.y = smoothMouse.current.x * parallaxY + Math.sin(t * 0.16) * 0.06;
+    g.rotation.z = Math.sin(t * 0.13) * 0.025;
     spreadRef.current = p.spread;
   });
 
