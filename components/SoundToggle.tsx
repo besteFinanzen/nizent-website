@@ -25,8 +25,13 @@ export default function SoundToggle({ compact = false }: { compact?: boolean }) 
       onClick={toggle}
       onMouseEnter={() => sfx.hover()}
       aria-label={on ? "Sound off" : "Sound on"}
-      className={`flex items-center justify-center rounded-full border border-cyan/20 text-cyan transition-colors hover:bg-cyan/10 ${
+      data-hover
+      className={`flex items-center justify-center border transition-colors ${
         compact ? "h-8 w-8" : "h-9 w-9"
+      } rounded-[8px] ${
+        on
+          ? "border-cyan/60 bg-cyan/10 text-cyan"
+          : "border-silver/25 text-silver hover:border-cyan/50 hover:text-cyan"
       }`}
     >
       {on ? (

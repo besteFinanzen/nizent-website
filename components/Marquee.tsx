@@ -18,7 +18,7 @@ export default function Marquee() {
                 className="flex items-center gap-12 font-display text-sm uppercase tracking-[0.3em] text-silver/40"
               >
                 {item}
-                <span className="text-cyan/50">◆</span>
+                <span className="inline-block h-1.5 w-1.5 rotate-45 bg-cyan/50" />
               </span>
             ))}
           </div>

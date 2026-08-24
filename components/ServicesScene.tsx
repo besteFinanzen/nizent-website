@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, type Variants } from "framer-motion";
 import { useLang } from "@/lib/i18n";
+import Eyebrow from "./Eyebrow";
 
 const rise: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -96,10 +97,8 @@ export default function ServicesScene() {
           transition={{ duration: 0.8 }}
           className="mb-16 text-center"
         >
-          <span className="mb-5 inline-block rounded-full border border-cyan/25 bg-cyan/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan">
-            {t("services.badge")}
-          </span>
-          <h2 className="font-display text-4xl font-bold tracking-tight text-silver-light md:text-5xl">
+          <Eyebrow index="04" label={t("services.badge")} />
+          <h2 className="mt-5 font-display text-4xl font-bold tracking-tight text-silver-light md:text-5xl">
             {t("services.title")}
           </h2>
         </motion.div>
@@ -112,7 +111,7 @@ export default function ServicesScene() {
         >
           {SERVICES.map((s) => (
             <TiltCard key={s.key} index={0}>
-              <div className="mb-6 inline-flex rounded-2xl border border-cyan/15 bg-cyan/5 p-3">
+              <div className="mb-6 inline-flex rounded-[6px] border border-cyan/25 bg-cyan/5 p-3">
                 {s.icon}
               </div>
               <h3 className="mb-3 font-display text-2xl font-bold text-silver-light">
@@ -131,8 +130,8 @@ export default function ServicesScene() {
                     transition={{ delay: 0.3 + i * 0.09, duration: 0.45 }}
                     className="flex items-center gap-3 text-sm text-silver"
                   >
-                    <span className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border border-cyan/40">
-                      <svg viewBox="0 0 10 10" className="h-2 w-2 fill-cyan"><path d="M1 5.5L3.5 8 9 2" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" /></svg>
+                    <span className="flex h-4 w-4 flex-shrink-0 items-center justify-center border border-cyan/40">
+                      <svg viewBox="0 0 10 10" className="h-2 w-2"><path d="M1 5.5L3.5 8 9 2" stroke="#00e0ff" strokeWidth="1.8" fill="none" strokeLinecap="round" /></svg>
                     </span>
                     {t(`${s.key}.${f}`)}
                   </motion.li>

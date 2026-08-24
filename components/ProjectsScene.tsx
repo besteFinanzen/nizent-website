@@ -4,6 +4,7 @@ import { motion, type Variants } from "framer-motion";
 import { useLang } from "@/lib/i18n";
 import { sfx } from "@/lib/audio";
 import PhoneMockup from "./PhoneMockup";
+import Eyebrow from "./Eyebrow";
 
 const MPG_SHOTS = [
   "/screenshots/mpg/dark/homescreen.png",
@@ -27,6 +28,14 @@ const rise = (delay = 0): Variants => ({
   visible: { opacity: 1, y: 0, transition: { delay, duration: 0.75, ease: [0.22, 1, 0.36, 1] as const } },
 });
 
+function Arrow() {
+  return (
+    <svg className="nz-arrow" viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M2 8h11M9 3.5L13.5 8 9 12.5" />
+    </svg>
+  );
+}
+
 function StoreButton({
   href,
   children,
@@ -36,15 +45,9 @@ function StoreButton({
   children: React.ReactNode;
   primary?: boolean;
 }) {
-  const cls = `relative overflow-hidden rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 ${
-    primary
-      ? "bg-cyan text-space shadow-lg shadow-cyan/25 hover:shadow-cyan/50 hover:brightness-110"
-      : "border border-silver/25 text-silver hover:border-cyan/60 hover:text-cyan"
-  }`;
-
   if (!href) {
     return (
-      <span className={`${cls} cursor-not-allowed border-dashed opacity-60`} aria-disabled>
+      <span className="nz-btn nz-btn-disabled" aria-disabled>
         {children}
       </span>
     );
@@ -54,21 +57,20 @@ function StoreButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onMouseEnter={() => sfx.hover()}
+      onMouseEnter={() => sfx.hover(primary ? 560 : 480)}
       onClick={() => sfx.click()}
-      className={cls}
+      className={`nz-btn ${primary ? "nz-btn-primary" : "nz-btn-secondary"}`}
       data-hover
     >
-      {primary && (
-        <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 hover:translate-x-full" />
-      )}
-      <span className="relative z-10">{children}</span>
+      <span>{children}</span>
+      <Arrow />
     </a>
   );
 }
 
 function ProjectShowcase({
   id,
+  index,
   badge,
   title,
   desc,
@@ -80,6 +82,7 @@ function ProjectShowcase({
   children,
 }: {
   id: string;
+  index: string;
   badge: string;
   title: string;
   desc: string;
@@ -93,17 +96,16 @@ function ProjectShowcase({
   return (
     <section id={id} className="relative z-10 flex min-h-screen items-center py-28">
       <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 lg:grid-cols-2 lg:gap-12">
-        {/* Text */}
         <div className={`order-2 text-center lg:text-left ${flip ? "lg:order-2" : "lg:order-1"}`}>
-          <motion.span
+          <motion.div
             variants={rise(0)}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.4 }}
-            className="mb-5 inline-block rounded-full border border-cyan/25 bg-cyan/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan"
+            className="mb-6"
           >
-            {badge}
-          </motion.span>
+            <Eyebrow index={index} label={badge} />
+          </motion.div>
 
           <motion.h3
             variants={rise(0.08)}
@@ -135,11 +137,11 @@ function ProjectShowcase({
             {features.map((f, i) => (
               <motion.span
                 key={f}
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.85 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.35 + i * 0.08, duration: 0.45 }}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs font-medium text-silver backdrop-blur-sm transition-colors hover:border-cyan/40 hover:text-cyan"
+                className="tag"
                 data-hover
               >
                 {f}
@@ -158,7 +160,6 @@ function ProjectShowcase({
           </motion.div>
         </div>
 
-        {/* Phone */}
         <div className={`order-1 flex justify-center ${flip ? "lg:order-1" : "lg:order-2"}`}>
           <motion.div
             initial={{ opacity: 0, y: 70, rotateY: flip ? 18 : -18 }}
@@ -169,7 +170,6 @@ function ProjectShowcase({
           >
             <PhoneMockup shots={shots} alt={alt} />
 
-            {/* Floating app icon */}
             <motion.img
               src={icon}
               alt=""
@@ -193,6 +193,7 @@ export default function ProjectsScene() {
     <>
       <ProjectShowcase
         id="mpg"
+        index="01"
         badge={t("mpg.badge")}
         title={t("mpg.title")}
         desc={t("mpg.desc")}
@@ -212,6 +213,7 @@ export default function ProjectsScene() {
 
       <ProjectShowcase
         id="dlrg"
+        index="02"
         badge={t("dlrg.badge")}
         title={t("dlrg.title")}
         desc={t("dlrg.desc")}

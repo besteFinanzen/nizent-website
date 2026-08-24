@@ -75,29 +75,50 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2">
           <SoundToggle compact />
-          <button
-            onClick={() => {
-              sfx.click();
-              setLang(lang === "de" ? "en" : "de");
-            }}
-            onMouseEnter={() => sfx.hover()}
-            className="rounded-full border border-cyan/25 px-3.5 py-1.5 text-xs font-bold tracking-wider text-cyan transition-colors hover:bg-cyan/10"
-            data-hover
-          >
-            {lang === "de" ? "EN" : "DE"}
-          </button>
+          <div className="seg" role="group" aria-label="Language">
+            <button
+              className={lang === "de" ? "active" : ""}
+              onClick={() => {
+                sfx.click();
+                setLang("de");
+              }}
+              onMouseEnter={() => sfx.hover()}
+              data-hover
+            >
+              DE
+            </button>
+            <button
+              className={lang === "en" ? "active" : ""}
+              onClick={() => {
+                sfx.click();
+                setLang("en");
+              }}
+              onMouseEnter={() => sfx.hover()}
+              data-hover
+            >
+              EN
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile burger */}
       <div className="flex items-center gap-3 md:hidden">
         <SoundToggle compact />
-        <button
-          onClick={() => setLang(lang === "de" ? "en" : "de")}
-          className="rounded-full border border-cyan/25 px-3 py-1.5 text-xs font-bold text-cyan"
-        >
-          {lang === "de" ? "EN" : "DE"}
-        </button>
+        <div className="seg" role="group" aria-label="Language">
+          <button
+            className={lang === "de" ? "active" : ""}
+            onClick={() => setLang("de")}
+          >
+            DE
+          </button>
+          <button
+            className={lang === "en" ? "active" : ""}
+            onClick={() => setLang("en")}
+          >
+            EN
+          </button>
+        </div>
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="flex flex-col gap-1.5 p-2"

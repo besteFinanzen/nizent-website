@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { MotionConfig } from "framer-motion";
 import { LangProvider } from "@/lib/i18n";
 import { ScrollProvider, useScrollProgress } from "@/lib/scroll-context";
+import { sfx } from "@/lib/audio";
+import { SECTION_IDS, sectionIndexAt } from "@/lib/sections";
 import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -18,16 +20,13 @@ import IsometricGrid from "@/components/IsometricGrid";
 import DotNav from "@/components/DotNav";
 import Cursor from "@/components/Cursor";
 
-const SECTION_IDS = ["home", "mpg", "dlrg", "about", "services", "contact"];
-
 function Inner() {
   const { progress, setProgress } = useScrollProgress();
   const [marks, setMarks] = useState<number[] | null>(null);
+  const moodRef = useRef(-1);
 
   const onProgress = useCallback((p: number) => setProgress(p), [setProgress]);
 
-  // Measure each section's center as a normalized scroll position (0..1)
-  // so the 3D cube knows exactly where it should be at any time.
   useEffect(() => {
     const measure = () => {
       const vh = window.innerHeight;
@@ -60,6 +59,15 @@ function Inner() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!marks) return;
+    const idx = sectionIndexAt(progress, marks);
+    if (idx !== moodRef.current) {
+      moodRef.current = idx;
+      sfx.setMood(idx);
+    }
+  }, [progress, marks]);
+
   return (
     <SmoothScroll onProgress={onProgress}>
       <Cursor />
@@ -68,7 +76,6 @@ function Inner() {
       <DotNav />
       <IsometricGrid />
 
-      {/* Ambient background orbs */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div className="animate-drift-a absolute -left-40 top-1/4 h-[480px] w-[480px] rounded-full bg-steel/25 blur-[140px]" />
         <div className="animate-drift-b absolute -right-40 bottom-1/4 h-[420px] w-[420px] rounded-full bg-cyan/10 blur-[140px]" />

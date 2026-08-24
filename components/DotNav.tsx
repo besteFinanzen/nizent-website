@@ -44,22 +44,28 @@ export default function DotNav() {
             key={id}
             onClick={() => {
               sfx.click();
+              sfx.nav();
               scrollToId(id);
             }}
-            onMouseEnter={() => sfx.hover()}
+            onMouseEnter={() => sfx.hover(600)}
             className="group relative flex items-center justify-end"
             aria-label={t(key)}
+            data-hover
           >
-            <span className="pointer-events-none absolute right-6 whitespace-nowrap rounded-full border border-white/10 bg-space/90 px-3 py-1 text-xs text-silver opacity-0 backdrop-blur transition-all duration-300 group-hover:opacity-100">
+            <span className="pointer-events-none absolute right-6 whitespace-nowrap rounded-[6px] border border-white/10 bg-space/90 px-3 py-1 font-display text-[11px] tracking-wider text-silver opacity-0 backdrop-blur transition-all duration-300 group-hover:opacity-100">
               {t(key)}
             </span>
             <motion.span
+              className="diamond block"
+              initial={{ rotate: 45 }}
               animate={{
-                scale: isActive ? 1.4 : 1,
-                backgroundColor: isActive ? "#00e0ff" : "transparent",
-                borderColor: isActive ? "#00e0ff" : "rgba(201,214,223,0.3)",
+                rotate: 45,
+                scale: isActive ? 1.3 : 1,
+                backgroundColor: isActive ? "#00e0ff" : "rgba(4, 18, 31, 0)",
+                borderColor: isActive ? "#00e0ff" : "rgba(201, 214, 223, 0.35)",
               }}
-              className={`block h-2.5 w-2.5 rounded-full border ${isActive ? "shadow-[0_0_12px_rgba(0,224,255,0.7)]" : ""}`}
+              whileHover={{ scale: 1.2 }}
+              transition={{ duration: 0.25 }}
             />
           </button>
         );

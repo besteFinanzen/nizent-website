@@ -65,7 +65,7 @@ export default function HeroScene() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.55 + i * 0.15, duration: 0.6 }}
-            className="animate-float rounded-full border border-cyan/20 bg-cyan/5 px-4 py-1.5 text-xs font-medium tracking-wide text-silver backdrop-blur-sm transition-colors hover:border-cyan/50 hover:text-cyan"
+            className="tag animate-float"
             style={{ animationDelay: `${i * 1.2}s` }}
             data-hover
           >
@@ -91,7 +91,7 @@ export default function HeroScene() {
         <motion.span
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          className="flex h-9 w-5 items-start justify-center rounded-full border border-current pt-1.5"
+          className="flex h-9 w-5 items-start justify-center rounded-[7px] border border-current pt-1.5"
         >
           <span className="h-2 w-1 rounded-full bg-cyan" />
         </motion.span>

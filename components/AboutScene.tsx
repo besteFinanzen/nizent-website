@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { useLang } from "@/lib/i18n";
+import Eyebrow from "./Eyebrow";
 
 const parent: Variants = {
   hidden: {},
@@ -37,10 +38,8 @@ export default function AboutScene() {
           transition={{ duration: 0.8 }}
           className="mb-16 text-center"
         >
-          <span className="mb-5 inline-block rounded-full border border-cyan/25 bg-cyan/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan">
-            nizent
-          </span>
-          <h2 className="font-display text-4xl font-bold tracking-tight text-silver-light md:text-5xl">
+          <Eyebrow index="03" label="nizent" />
+          <h2 className="mt-5 font-display text-4xl font-bold tracking-tight text-silver-light md:text-5xl">
             {t("about.title")}
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-silver">

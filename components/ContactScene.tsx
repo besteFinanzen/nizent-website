@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLang } from "@/lib/i18n";
 import { sfx } from "@/lib/audio";
+import Eyebrow from "./Eyebrow";
 import Link from "next/link";
 
 export default function ContactScene() {
@@ -28,10 +29,8 @@ export default function ContactScene() {
           transition={{ duration: 0.8 }}
           className="mb-14 text-center"
         >
-          <span className="mb-5 inline-block rounded-full border border-cyan/25 bg-cyan/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-cyan">
-            {t("contact.badge")}
-          </span>
-          <h2 className="font-display text-4xl font-bold tracking-tight text-silver-light md:text-5xl">
+          <Eyebrow index="05" label={t("contact.badge")} />
+          <h2 className="mt-5 font-display text-4xl font-bold tracking-tight text-silver-light md:text-5xl">
             {t("contact.title")}
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg text-silver">
@@ -101,15 +100,14 @@ export default function ContactScene() {
                 <motion.button
                   type="submit"
                   disabled={state === "sending"}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.97 }}
-                  onMouseEnter={() => sfx.hover()}
-                  className="group relative w-full overflow-hidden rounded-2xl bg-cyan py-4 font-display font-semibold text-space shadow-lg shadow-cyan/25 transition-shadow hover:shadow-cyan/50 disabled:opacity-70"
+                  whileTap={{ scale: 0.98 }}
+                  onMouseEnter={() => sfx.hover(560)}
+                  className="nz-btn nz-btn-primary w-full"
                 >
-                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-                  <span className="relative z-10">
-                    {state === "sending" ? "…" : t("contact.form.submit")}
-                  </span>
+                  <span>{state === "sending" ? "…" : t("contact.form.submit")}</span>
+                  <svg className="nz-arrow" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M2 8h11M9 3.5L13.5 8 9 12.5" />
+                  </svg>
                 </motion.button>
               </motion.form>
             )}

@@ -34,13 +34,13 @@ export default function Cursor() {
   return (
     <>
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[100] h-1.5 w-1.5 rounded-full bg-cyan"
-        style={{ x, y, translateX: "-50%", translateY: "-50%" }}
+        className="pointer-events-none fixed left-0 top-0 z-[100] h-1.5 w-1.5 bg-cyan"
+        style={{ x, y, translateX: "-50%", translateY: "-50%", rotate: 45 }}
       />
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[100] h-9 w-9 rounded-full border border-cyan/60"
-        style={{ x: rx, y: ry, translateX: "-50%", translateY: "-50%" }}
-        animate={{ scale: hot ? 1.7 : 1, opacity: hot ? 0.9 : 0.45 }}
+        className="pointer-events-none fixed left-0 top-0 z-[100] h-8 w-8 border border-cyan/60"
+        style={{ x: rx, y: ry, translateX: "-50%", translateY: "-50%", rotate: 45 }}
+        animate={{ scale: hot ? 1.5 : 1, opacity: hot ? 0.9 : 0.45 }}
         transition={{ duration: 0.2 }}
       />
     </>
