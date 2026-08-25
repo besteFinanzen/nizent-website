@@ -1,8 +1,13 @@
 "use client";
 
+/*
+ * Services section — the offerings list with scroll-linked reveals.
+ */
+
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, type Variants } from "framer-motion";
 import { useLang } from "@/lib/i18n";
+import { sfx } from "@/lib/audio";
 import Eyebrow from "./Eyebrow";
 
 const rise: Variants = {
@@ -48,6 +53,7 @@ function TiltCard({
       <motion.div
         ref={ref}
         onMouseMove={onMove}
+        onMouseEnter={() => sfx.chime()}
         onMouseLeave={onLeave}
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         className="service-card glare relative h-full"

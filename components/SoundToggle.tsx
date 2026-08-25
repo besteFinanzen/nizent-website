@@ -1,5 +1,9 @@
 "use client";
 
+/*
+ * Mute / unmute button. Persists the choice in localStorage and calls sfx.set().
+ */
+
 import { useEffect, useState } from "react";
 import { sfx } from "@/lib/audio";
 

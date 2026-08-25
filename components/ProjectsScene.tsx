@@ -1,5 +1,10 @@
 "use client";
 
+/*
+ * Projects section — showcase of the MPG school app: screenshots, feature list
+ * and a PhoneMockup. Copy is pulled from i18n (de/en).
+ */
+
 import { motion, type Variants } from "framer-motion";
 import { useLang } from "@/lib/i18n";
 import { sfx } from "@/lib/audio";
@@ -143,6 +148,7 @@ function ProjectShowcase({
                 transition={{ delay: 0.35 + i * 0.08, duration: 0.45 }}
                 className="tag"
                 data-hover
+                onMouseEnter={() => sfx.chime()}
               >
                 {f}
               </motion.span>

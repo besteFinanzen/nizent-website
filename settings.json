@@ -1,0 +1,80 @@
+{
+  "site": {
+    "name": "Nizent",
+    "domain": "nizent.de",
+    "url": "https://nizent.de",
+    "contactApiUrl": "https://api.nizent.de/send"
+  },
+  "audio": {
+    "music": {
+      "enabled": false,
+      "url": "/assets/audiodollar-copyright-free-music-so-copyright-free-music-553633.mp3",
+      "gain": 0.08,
+      "cutoff": 2000,
+      "reverb": 0.2,
+      "reverbSend": 0.3,
+      "fadeInSeconds": 1.5,
+      "fadeOutSeconds": 0.3
+    },
+    "master": {
+      "volume": 1.0,
+      "fadeInSeconds": 0.4,
+      "fadeOutSeconds": 0.25,
+      "compressorThreshold": -18,
+      "compressorRatio": 12
+    },
+    "fx": {
+      "busGain": 1.2,
+      "reverb": { "seconds": 1.7, "decay": 2.0 },
+      "hover": { "freq": 480, "dur": 0.05, "gain": 0.08 },
+      "click": [
+        { "freq": 523.25, "dur": 0.06, "gain": 0.09, "delay": 0 },
+        { "freq": 784, "dur": 0.09, "gain": 0.07, "delay": 0.05 }
+      ],
+      "nav": { "gain": 0.08, "freqFrom": 2200, "freqTo": 250, "dur": 0.35 },
+      "toggleOn": [
+        { "freq": 392, "dur": 0.12, "gain": 0.1, "delay": 0 },
+        { "freq": 523.25, "dur": 0.14, "gain": 0.1, "delay": 0.09 },
+        { "freq": 659.25, "dur": 0.22, "gain": 0.11, "delay": 0.18 }
+      ],
+      "toggleOff": [
+        { "freq": 523.25, "dur": 0.1, "gain": 0.08, "delay": 0 },
+        { "freq": 349.23, "dur": 0.16, "gain": 0.08, "delay": 0.08 }
+      ],
+      "chime": {
+        "gain": 0.01,
+        "dur": 0.35,
+        "partials": [1.0, 2.0, 3.0, 4.2],
+        "partialGains": [1.0, 0.5, 0.3, 0.15],
+        "scale": [523.25, 587.33, 659.25, 783.99, 880.0]
+      }
+    },
+    "analysis": {
+      "fftSize": 256,
+      "smoothing": 0.8,
+      "bassEndBin": 4,
+      "midEndBin": 28,
+      "levelSmoothing": 0.8,
+      "levelDecayWhenOff": 0.9
+    }
+  },
+  "visuals": {
+    "particles": {
+      "count": 150,
+      "radiusMin": 2.5,
+      "radiusMax": 7.5,
+      "sizeBase": 0.03,
+      "sizeBoost": 0.045,
+      "opacityBase": 0.07,
+      "opacityHighGain": 0.16,
+      "opacityMidGain": 0.05,
+      "driftSpeed": 0.04
+    },
+    "cube": {
+      "emissiveBase": 0.5,
+      "emissiveBoost": 0.35,
+      "edgeOpacityBase": 0.35,
+      "edgeOpacityBoost": 0.2
+    }
+  }
+}

@@ -1,5 +1,9 @@
 "use client";
 
+/*
+ * Decorative faint isometric grid backdrop rendered behind the cube.
+ */
+
 export default function IsometricGrid() {
   return (
     <svg

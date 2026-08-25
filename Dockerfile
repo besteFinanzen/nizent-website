@@ -1,3 +1,5 @@
+# Builds the static site and serves it with nginx.
+# Multi-stage: install + build in node, then copy the `out/` export into nginx.
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package.json package-lock.json ./

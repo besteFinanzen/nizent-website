@@ -1,5 +1,10 @@
 "use client";
 
+/*
+ * Top navigation bar — brand, section links (scrollToId), language toggle and
+ * sound toggle. Fixed; gains a blur/solid background once the user scrolls.
+ */
+
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLang } from "@/lib/i18n";
@@ -55,7 +60,7 @@ export default function Navbar() {
           className="h-8 w-8 transition-transform duration-500 group-hover:rotate-[15deg] group-hover:scale-110"
         />
         <span className="font-display text-lg font-bold tracking-tight text-silver-light">
-          nizent
+          Nizent
         </span>
       </button>
 

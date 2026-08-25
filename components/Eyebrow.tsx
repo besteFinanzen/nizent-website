@@ -1,5 +1,9 @@
 "use client";
 
+/*
+ * Small section label: an index + rule, used consistently above headings.
+ */
+
 export default function Eyebrow({ index, label }: { index: string; label: string }) {
   return (
     <span className="eyebrow">

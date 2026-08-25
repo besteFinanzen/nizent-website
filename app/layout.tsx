@@ -15,17 +15,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "nizent — Software, die den Unterschied macht",
+  title: "Nizent — Software, die den Unterschied macht",
   description:
-    "nizent entwickelt individuelle Software, die genau auf deinen Zweck zugeschnitten ist. Maßgeschneidert, verlässlich und mit Wirkung.",
+    "Nizent entwickelt individuelle Software, die genau auf deinen Zweck zugeschnitten ist. Maßgeschneidert, verlässlich und mit Wirkung.",
   metadataBase: new URL("https://nizent.de"),
-  icons: { icon: "/favicon.png" },
   openGraph: {
-    title: "nizent — Software, die den Unterschied macht",
+    title: "Nizent — Software, die den Unterschied macht",
     description:
       "Individuelle Software, gebaut mit Handwerksqualität. Für Alle, die Technologie brauchen, die wirkt und nicht nur da ist.",
     url: "https://nizent.de",
-    siteName: "nizent",
+    siteName: "Nizent",
     locale: "de_DE",
     type: "website",
   },

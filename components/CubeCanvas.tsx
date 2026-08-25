@@ -1,9 +1,18 @@
 "use client";
 
+/*
+ * React Three Fiber canvas hosting the logo cube, ambient shards and the
+ * sound-reactive particle cloud. Rendered as a fixed, pointer-ignore background
+ * layer behind all page content.
+ */
+
 import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import IsometricCube from "./IsometricCube";
+import IsometricCube, { frameLevel } from "./IsometricCube";
+import { settings } from "@/lib/settings";
+
+const P = settings.visuals.particles;
 
 // Deterministic pseudo-random (pure render, no hydration mismatch)
 function seededRandom(seed: number) {
@@ -57,6 +66,61 @@ function Shards() {
   );
 }
 
+/**
+ * Ambient particle cloud around the logo. Drifts slowly and breathes subtly
+ * with the music (size + opacity), driven by settings.visuals.particles.
+ */
+function SoundParticles() {
+  const ref = useRef<THREE.Points>(null);
+  const matRef = useRef<THREE.PointsMaterial>(null);
+
+  const geometry = useMemo(() => {
+    const rand = seededRandom(7);
+    const count = P.count;
+    const positions = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      const r = P.radiusMin + rand() * (P.radiusMax - P.radiusMin);
+      const theta = rand() * Math.PI * 2;
+      const phi = Math.acos(rand() * 2 - 1);
+      positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta) * 0.7;
+      positions[i * 3 + 2] = r * Math.cos(phi) * 0.4;
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    return g;
+  }, []);
+
+  useFrame((state) => {
+    const p = ref.current;
+    if (!p) return;
+    const t = state.clock.elapsedTime;
+    p.rotation.y = t * P.driftSpeed;
+    p.rotation.x = Math.sin(t * 0.03) * 0.1;
+    if (matRef.current) {
+      // barely-there breathing with the music — non-disturbing
+      matRef.current.opacity =
+        P.opacityBase + frameLevel.high * P.opacityHighGain + frameLevel.mid * P.opacityMidGain;
+      matRef.current.size = P.sizeBase + frameLevel.mid * P.sizeBoost;
+    }
+  });
+
+  return (
+    <points ref={ref} geometry={geometry}>
+      <pointsMaterial
+        ref={matRef}
+        color="#00e0ff"
+        size={P.sizeBase}
+        sizeAttenuation
+        transparent
+        opacity={P.opacityBase}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </points>
+  );
+}
+
 export default function CubeCanvas({
   progress,
   marks,
@@ -78,6 +142,7 @@ export default function CubeCanvas({
         <pointLight position={[6, -4, -4]} intensity={8} color="#1b5676" distance={18} />
         <IsometricCube progress={progress} marks={marks} />
         <Shards />
+        <SoundParticles />
       </Canvas>
     </div>
   );

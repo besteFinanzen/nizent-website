@@ -1,5 +1,9 @@
 "use client";
 
+/*
+ * Thin top progress bar bound to scroll progress.
+ */
+
 import { motion } from "framer-motion";
 
 export default function ScrollProgress({ progress }: { progress: number }) {

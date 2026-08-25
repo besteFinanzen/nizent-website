@@ -1,7 +1,13 @@
 "use client";
 
+/*
+ * About section — mission statement, the three pillars (Precision / Impact /
+ * Reliable) and stats. The cube is fully "exploded" here.
+ */
+
 import { motion, type Variants } from "framer-motion";
 import { useLang } from "@/lib/i18n";
+import { sfx } from "@/lib/audio";
 import Eyebrow from "./Eyebrow";
 
 const parent: Variants = {
@@ -70,6 +76,7 @@ export default function AboutScene() {
               key={p.key}
               variants={card}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              onMouseEnter={() => sfx.chime()}
               className="pillar-card group relative overflow-hidden"
               data-hover
             >

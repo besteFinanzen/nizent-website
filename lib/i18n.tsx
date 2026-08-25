@@ -1,5 +1,12 @@
 "use client";
 
+/*
+ * Internationalization. Two string tables (de, en); useLang() returns a t()
+ * translator plus the active language and a setter. UI copy lives here so the
+ * whole site can switch language without re-rendering route data. When adding
+ * strings, add them to BOTH blocks under the same key.
+ */
+
 import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
 
 type Lang = "de" | "en";
@@ -25,7 +32,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "hero.chip2": "Support & Wartung",
     "hero.chip3": "Apps mit Wirkung",
     "marq.1": "Individualsoftware",
-    "marq.2": "Support & Wartung",
+    "marq.2": "SaaS",
     "marq.3": "Mobile Apps",
     "marq.4": "Webplattformen",
     "mpg.badge": "Für den Schulalltag",
@@ -77,6 +84,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "contact.form.message": "Nachricht",
     "contact.form.submit": "Nachricht senden",
     "contact.success": "Nachricht gesendet — wir melden uns!",
+    "contact.error": "Nachricht konnte nicht gesendet werden. Bitte versuch es später erneut.",
     "footer.tagline": "Software, die den Unterschied macht",
     "legal.imprint": "Impressum",
     "legal.privacy": "Datenschutz",
@@ -95,7 +103,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "hero.chip2": "Support & Maintenance",
     "hero.chip3": "Apps that matter",
     "marq.1": "Custom Software",
-    "marq.2": "Support & Maintenance",
+    "marq.2": "SaaS",
     "marq.3": "Mobile Apps",
     "marq.4": "Web Platforms",
     "mpg.badge": "Built for school life",
@@ -147,6 +155,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "contact.form.message": "Message",
     "contact.form.submit": "Send message",
     "contact.success": "Message sent — we'll get back to you!",
+    "contact.error": "Message could not be sent. Please try again later.",
     "footer.tagline": "Software that makes a difference",
     "legal.imprint": "Imprint",
     "legal.privacy": "Privacy Policy",

@@ -1,5 +1,9 @@
 "use client";
 
+/*
+ * Infinite horizontal marquee strip of keywords / claims.
+ */
+
 import { useLang } from "@/lib/i18n";
 
 export default function Marquee() {

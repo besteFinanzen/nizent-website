@@ -1,22 +1,56 @@
 "use client";
 
+/*
+ * Contact section + footer. Holds the (real) contact form that POSTs to
+ * settings.site.contactApiUrl via the mailer service, with idle / sending /
+ * sent / error states and a hidden honeypot field.
+ */
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLang } from "@/lib/i18n";
 import { sfx } from "@/lib/audio";
+import { settings } from "@/lib/settings";
 import Eyebrow from "./Eyebrow";
 import Link from "next/link";
 
+// Build-time env override takes precedence; otherwise use settings.json.
+const API_URL =
+  process.env.NEXT_PUBLIC_CONTACT_API || settings.site.contactApiUrl;
+
 export default function ContactScene() {
   const { t } = useLang();
-  const [state, setState] = useState<"idle" | "sending" | "sent">("idle");
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+    company: "",
+  });
 
-  const submit = (e: React.FormEvent) => {
+  const update =
+    (key: keyof typeof form) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm((f) => ({ ...f, [key]: e.target.value }));
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (state !== "idle") return;
     sfx.click();
     setState("sending");
-    setTimeout(() => setState("sent"), 1100);
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("request failed");
+      setState("sent");
+    } catch {
+      setState("error");
+    }
   };
 
   return (
@@ -38,13 +72,13 @@ export default function ContactScene() {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="mx-auto max-w-lg"
-        >
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="mx-auto max-w-lg"
+          >
           <AnimatePresence mode="wait">
             {state === "sent" ? (
               <motion.div
@@ -77,16 +111,25 @@ export default function ContactScene() {
                 onSubmit={submit}
                 className="space-y-5"
               >
+                {state === "error" && (
+                  <p className="rounded-xl border border-rose-400/30 bg-rose-400/5 px-4 py-3 text-center text-sm text-rose-300">
+                    {t("contact.error")}
+                  </p>
+                )}
                 <div className="grid gap-5 md:grid-cols-2">
                   <input
                     required
                     type="text"
+                    value={form.name}
+                    onChange={update("name")}
                     placeholder={t("contact.form.name")}
                     className="field"
                   />
                   <input
                     required
                     type="email"
+                    value={form.email}
+                    onChange={update("email")}
                     placeholder={t("contact.form.email")}
                     className="field"
                   />
@@ -94,8 +137,21 @@ export default function ContactScene() {
                 <textarea
                   required
                   rows={5}
+                  value={form.message}
+                  onChange={update("message")}
                   placeholder={t("contact.form.message")}
                   className="field resize-none"
+                />
+                {/* honeypot — hidden from humans, catches bots */}
+                <input
+                  type="text"
+                  name="company"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.company}
+                  onChange={update("company")}
+                  className="hidden"
+                  aria-hidden="true"
                 />
                 <motion.button
                   type="submit"
@@ -118,7 +174,7 @@ export default function ContactScene() {
         <footer className="mt-28 border-t border-white/5 pt-8">
           <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
             <div className="flex items-center gap-3">
-              <img src="/logo.svg" alt="nizent" className="h-7 w-7" />
+              <img src="/logo.svg" alt="Nizent Logo" className="h-7 w-7" />
               <div>
                 <span className="font-display text-sm font-bold text-silver-light">nizent</span>
                 <span className="block text-xs text-silver/50">{t("footer.tagline")}</span>

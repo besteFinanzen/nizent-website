@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, type MutableRefObject } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { sfx } from "@/lib/audio";
+import { settings } from "@/lib/settings";
 
 /*
  * The nizent logo, rebuilt piece by piece.
@@ -114,9 +116,14 @@ if (typeof window !== "undefined") {
 
 const spreadRef: MutableRefObject<number> = { current: 0 };
 
+// smoothed audio energy, sampled once per frame (read by pieces + particles)
+export const frameLevel = { bass: 0, mid: 0, high: 0 };
+
 function Piece({ def, index }: { def: PieceDef; index: number }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const edgeRef = useRef<THREE.LineSegments>(null);
+  const matRef = useRef<THREE.MeshStandardMaterial>(null);
+  const edgeMatRef = useRef<THREE.LineBasicMaterial>(null);
 
   const { geometry, edges, center, dir, tumble } = useMemo(() => {
     // Piece points relative to the LOGO center…
@@ -160,7 +167,7 @@ function Piece({ def, index }: { def: PieceDef; index: number }) {
     const spread = spreadRef.current;
 
     const dist = spread * 170;
-    const bob = Math.sin(t * 0.8 + tumble.phase) * (4 + spread * 14);
+    const bob = Math.sin(t * 0.3 + tumble.phase) * (4 + spread * 14);
 
     mesh.position.set(
       center.x + dir.x * dist,
@@ -173,12 +180,23 @@ function Piece({ def, index }: { def: PieceDef; index: number }) {
 
     edge.position.copy(mesh.position);
     edge.rotation.copy(mesh.rotation);
+
+    if (matRef.current) {
+      // gentle glow that breathes with the bass — subtle, never distracting
+      matRef.current.emissiveIntensity =
+        settings.visuals.cube.emissiveBase + frameLevel.bass * settings.visuals.cube.emissiveBoost;
+    }
+    if (edgeMatRef.current) {
+      edgeMatRef.current.opacity =
+        settings.visuals.cube.edgeOpacityBase + frameLevel.high * settings.visuals.cube.edgeOpacityBoost;
+    }
   });
 
   return (
     <>
       <mesh ref={meshRef} geometry={geometry}>
         <meshStandardMaterial
+          ref={matRef}
           color={def.color}
           emissive={def.emissive}
           emissiveIntensity={0.5}
@@ -188,7 +206,7 @@ function Piece({ def, index }: { def: PieceDef; index: number }) {
         />
       </mesh>
       <lineSegments ref={edgeRef} geometry={edges}>
-        <lineBasicMaterial color="#00e0ff" transparent opacity={0.35} />
+        <lineBasicMaterial ref={edgeMatRef} color="#00e0ff" transparent opacity={0.35} />
       </lineSegments>
     </>
   );
@@ -214,13 +232,17 @@ export default function IsometricCube({
     smoothMouse.current.y += (mouseState.y - smoothMouse.current.y) * 0.05;
 
     const p = paramsAt(progress, activeMarks);
+    const lv = sfx.level();
+    frameLevel.bass = lv.bass;
+    frameLevel.mid = lv.mid;
+    frameLevel.high = lv.high;
     const parallaxX = 0.09 + 0.11 * p.spread;
     const parallaxY = 0.12 + 0.14 * p.spread;
     g.position.set(p.x, p.y, 0);
     g.scale.setScalar(BASE_SCALE * p.s);
-    g.rotation.x = smoothMouse.current.y * parallaxX + Math.sin(t * 0.21) * 0.03;
-    g.rotation.y = smoothMouse.current.x * parallaxY + Math.sin(t * 0.16) * 0.06;
-    g.rotation.z = Math.sin(t * 0.13) * 0.025;
+    g.rotation.x = smoothMouse.current.y * parallaxX + Math.sin(t * 0.09) * 0.03;
+    g.rotation.y = smoothMouse.current.x * parallaxY + Math.sin(t * 0.07) * 0.06;
+    g.rotation.z = Math.sin(t * 0.055) * 0.025;
     spreadRef.current = p.spread;
   });
 

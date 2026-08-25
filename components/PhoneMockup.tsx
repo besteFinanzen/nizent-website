@@ -1,5 +1,9 @@
 "use client";
 
+/*
+ * Framed device mockup that displays app screenshots; used inside ProjectsScene.
+ */
+
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 

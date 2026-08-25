@@ -1,5 +1,10 @@
 "use client";
 
+/*
+ * DOM helpers. scrollToId() smoothly scrolls to a section by id, using the
+ * Lenis instance when available (window.__lenis) and falling back to native.
+ */
+
 export function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;

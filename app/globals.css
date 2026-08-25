@@ -432,3 +432,11 @@ section[id] {
   border-color: rgba(0, 224, 255, 0.25);
   background: linear-gradient(180deg, rgba(27, 86, 118, 0.2), rgba(4, 18, 31, 0.9));
 }
+
+/* Placeholder marker for legal pages (to be filled in by the site owner) */
+.ph {
+  border-bottom: 1px dashed rgba(0, 224, 255, 0.55);
+  color: var(--color-cyan);
+  cursor: help;
+  white-space: nowrap;
+}

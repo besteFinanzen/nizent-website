@@ -1,5 +1,10 @@
 "use client";
 
+/*
+ * Right-side dot navigation mirroring SECTION_IDS. Click to jump; the active
+ * dot follows scroll progress.
+ */
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/i18n";

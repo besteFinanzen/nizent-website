@@ -1,5 +1,10 @@
 "use client";
 
+/*
+ * Scroll progress context. The page reports overall scroll progress (0..1) here;
+ * consumers (cube, dot nav, scroll progress bar) read it via useScrollProgress().
+ */
+
 import { createContext, useContext, useState, type ReactNode } from "react";
 
 const ScrollCtx = createContext<{

@@ -1,5 +1,11 @@
 "use client";
 
+/*
+ * Home / hero section. Renders the headline, intro line, scroll hint and the
+ * floating logo cube (via CubeCanvas). Drives the language-aware title chips.
+ */
+
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/i18n";
 import { scrollToId } from "@/lib/dom";
@@ -17,6 +23,10 @@ const wordAnim = {
 
 export default function HeroScene() {
   const { t } = useLang();
+  const introDone = useRef(false);
+  useEffect(() => {
+    introDone.current = true;
+  }, []);
   const words = t("hero.title").split(" ");
   const chips = [t("hero.chip1"), t("hero.chip2"), t("hero.chip3")];
 
@@ -25,10 +35,12 @@ export default function HeroScene() {
       id="home"
       className="relative z-10 flex min-h-screen flex-col items-center justify-end px-6 pb-28 text-center"
     >
-      {/* Headline — word-by-word rise (the 3D logo cube floats above) */}
+      {/* Headline — word-by-word rise (the 3D logo cube floats above).
+          initial is gated so the entrance plays once on first mount and is
+          NOT replayed when the language changes (which can add/remove words). */}
       <motion.h1
         variants={container}
-        initial="hidden"
+        initial={introDone.current ? false : "hidden"}
         animate="visible"
         className="text-shimmer glow-text max-w-4xl bg-gradient-to-r from-silver-light via-cyan to-silver-light bg-clip-text font-display text-5xl font-bold leading-[1.06] tracking-tight text-transparent md:text-7xl lg:text-8xl"
         aria-label={t("hero.title")}
@@ -61,13 +73,14 @@ export default function HeroScene() {
       >
         {chips.map((chip, i) => (
           <motion.span
-            key={chip}
-            initial={{ opacity: 0, y: 16 }}
+            key={i}
+            initial={introDone.current ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.55 + i * 0.15, duration: 0.6 }}
             className="tag animate-float"
             style={{ animationDelay: `${i * 1.2}s` }}
             data-hover
+            onMouseEnter={() => sfx.chime()}
           >
             {chip}
           </motion.span>

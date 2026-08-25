@@ -1,5 +1,10 @@
 "use client";
 
+/*
+ * Lenis smooth-scroll provider. Instantiates Lenis, runs its RAF loop, and
+ * exposes the instance on window.__lenis so scrollToId() can drive it.
+ */
+
 import { useEffect } from "react";
 import Lenis from "lenis";
 
