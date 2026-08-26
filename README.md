@@ -6,7 +6,7 @@ design system, German/English i18n, a sound layer, and a real contact form whose
 submissions are emailed via a small separate mailer service.
 
 > Built as a **fully static export** (no Next.js server). The contact form calls
-> an external API (`api.nizent.de`) instead of Next API routes.
+> an external API (`contact-api.nizent.de`) instead of Next API routes.
 
 ---
 
@@ -153,7 +153,7 @@ both tables under the same key.**
 ## Contact form → email
 
 ```
-ContactScene ──POST /send──▶ mailer (api.nizent.de) ──SMTP──▶ kontakt@nizent.de
+ContactScene ──POST /send──▶ mailer (contact-api.nizent.de) ──SMTP──▶ kontakt@nizent.de
 ```
 
 `components/ContactScene.tsx` sends `{ name, email, message }` (plus a hidden
@@ -171,11 +171,11 @@ Two separate apps:
    Deploy on `nizent.de` / `www.nizent.de`. The `nginx.conf` handles SPA fallback
    and asset caching.
 2. **Mailer** — build with `mailer/Dockerfile` (Node + Express). Deploy on
-   `api.nizent.de` (or another subdomain) and set the SMTP + recipient
+   `contact-api.nizent.de` (or another subdomain) and set the SMTP + recipient
    environment variables (see `mailer/.env.example`). `settings.json` supplies
    non-secret defaults; **secrets (`SMTP_USER`, `SMTP_PASS`) come from env only**.
 
-DNS: point `nizent.de` (and `www`) at the site, `api.nizent.de` at the mailer.
+DNS: point `nizent.de` (and `www`) at the site, `contact-api.nizent.de` at the mailer.
 
 ---
 

@@ -12,12 +12,12 @@ import PhoneMockup from "./PhoneMockup";
 import Eyebrow from "./Eyebrow";
 
 const MPG_SHOTS = [
-  "/screenshots/mpg/dark/homescreen.png",
-  "/screenshots/mpg/dark/timetable.png",
-  "/screenshots/mpg/dark/subtitutes.png",
-  "/screenshots/mpg/dark/mensa.png",
-  "/screenshots/mpg/light/homescreen.png",
-  "/screenshots/mpg/light/timetable.png",
+  "/screenshots/mpg/dark/homescreen.webp",
+  "/screenshots/mpg/dark/timetable.webp",
+  "/screenshots/mpg/dark/subtitutes.webp",
+  "/screenshots/mpg/dark/mensa.webp",
+  "/screenshots/mpg/light/homescreen.webp",
+  "/screenshots/mpg/light/timetable.webp",
 ];
 
 const DLRG_SHOTS = [

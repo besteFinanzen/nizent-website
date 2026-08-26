@@ -1,5 +1,5 @@
 /*
- * Contact-form mailer service (separate Dokploy app at api.nizent.de).
+ * Contact-form mailer service (separate Dokploy app at contact-api.nizent.de).
  *   POST /send   -> validates input, applies a honeypot + per-IP rate limit,
  *                   then sends the message to settings.mail.toEmail via SMTP.
  *   GET  /health -> { ok: true } for uptime checks.

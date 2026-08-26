@@ -3,7 +3,7 @@
 A tiny standalone backend for the site's contact form. It receives a `POST`,
 validates it, and emails the message to `kontakt@nizent.de` over SMTP.
 
-It is deployed **separately** from the static site (e.g. on `api.nizent.de`),
+It is deployed **separately** from the static site (e.g. on `contact-api.nizent.de`),
 because the site itself is a static Next.js export with no server.
 
 ---
@@ -98,4 +98,4 @@ docker run -p 3000:3000 \
 ```
 
 On Dokploy, create a second app from `mailer/Dockerfile`, expose port `3000`,
-and set the environment variables above. Point `api.nizent.de` at it.
+and set the environment variables above. Point `contact-api.nizent.de` at it.
