@@ -3,7 +3,7 @@
     "name": "Nizent",
     "domain": "nizent.de",
     "url": "https://nizent.de",
-    "contactApiUrl": "https://api.nizent.de/send"
+    "contactApiUrl": "https://contact-api.nizent.de/send"
   },
   "audio": {
     "music": {
