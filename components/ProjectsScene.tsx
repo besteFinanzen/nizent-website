@@ -179,6 +179,8 @@ function ProjectShowcase({
             <motion.img
               src={icon}
               alt=""
+              loading="lazy"
+              decoding="async"
               className="animate-float absolute -right-8 -top-8 h-20 w-20 rounded-[22%] border border-white/15 shadow-2xl shadow-black/60 md:h-24 md:w-24"
               initial={{ opacity: 0, scale: 0, rotate: -30 }}
               whileInView={{ opacity: 1, scale: 1, rotate: 6 }}

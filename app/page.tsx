@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import dynamic from "next/dynamic";
 import { MotionConfig } from "framer-motion";
 import { LangProvider } from "@/lib/i18n";
 import { ScrollProvider, useScrollProgress } from "@/lib/scroll-context";
@@ -15,10 +16,21 @@ import ProjectsScene from "@/components/ProjectsScene";
 import AboutScene from "@/components/AboutScene";
 import ServicesScene from "@/components/ServicesScene";
 import ContactScene from "@/components/ContactScene";
-import CubeCanvas from "@/components/CubeCanvas";
 import IsometricGrid from "@/components/IsometricGrid";
 import DotNav from "@/components/DotNav";
 import Cursor from "@/components/Cursor";
+
+// The 3D hero canvas pulls in three.js + R3F (~700KB). Load it client-side and
+// async so it stays out of the initial bundle / first paint. A soft placeholder
+// shows during load; the canvas fades in once mounted.
+const CubeCanvas = dynamic(() => import("@/components/CubeCanvas"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="h-44 w-44 animate-pulse rounded-[24%] bg-gradient-to-br from-cyan/25 to-steel/25 blur-2xl" />
+    </div>
+  ),
+});
 
 function Inner() {
   const { progress, setProgress } = useScrollProgress();
