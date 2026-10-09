@@ -15,6 +15,7 @@ import SoundToggle from "./SoundToggle";
 const LINKS = [
   { id: "mpg", key: "nav.mpg" },
   { id: "dlrg", key: "nav.dlrg" },
+  { id: "gallery", key: "nav.gallery" },
   { id: "about", key: "nav.about" },
   { id: "services", key: "nav.services" },
   { id: "contact", key: "nav.contact" },

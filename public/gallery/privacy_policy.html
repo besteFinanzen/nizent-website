@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Gallery</title>
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto; max-width: 760px; padding: 32px 20px 96px;
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1a1a1a; background: #fff;
+  }
+  h1 { font-size: 1.7rem; line-height: 1.25; margin: 0 0 .4em; }
+  h2 { font-size: 1.25rem; margin: 1.8em 0 .5em; }
+  h3 { font-size: 1.05rem; margin: 1.5em 0 .4em; }
+  p, li { margin: .5em 0; }
+  a { color: #0b62c4; }
+  hr { border: 0; border-top: 1px solid #e3e3e3; margin: 2.2em 0; }
+  ul { padding-left: 1.3em; }
+  code { background: #f2f2f2; border-radius: 4px; padding: .1em .35em; font-size: .92em; }
+  blockquote {
+    margin: 0 0 1.8em; padding: 12px 16px; border-left: 4px solid #d99b00;
+    background: #fff8e6; color: #5c4200; border-radius: 0 8px 8px 0;
+  }
+  blockquote p { margin: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: .95rem; }
+  th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e6e6e6; background: #16181c; }
+    a { color: #6cb6ff; }
+    hr { border-color: #333; }
+    code { background: #2a2d33; }
+    blockquote { background: #2e2713; color: #e8d9a8; border-color: #a97900; }
+    th, td { border-color: #3a3d43; }
+  }
+</style>
+</head>
+<body>
+<h1 id="gallery--galerie--privacy-policy">Gallery / Galerie — Privacy
+Policy</h1>
+<p>Last updated: 7 October 2026 · German version: <a
+href="datenschutz.html">Datenschutzerklärung</a></p>
+<h2 id="1-controller">1. Controller</h2>
+<p>For the processing described in sections 5 and 9, the controller
+within the meaning of the GDPR is:</p>
+<p>Nizent Niklas Kimmerle<br />
+Schulweg 19, 72639 Neuffen, Germany<br />
+Email: <a
+href="mailto:datenschutz@nizent.de">datenschutz@nizent.de</a></p>
+<p>Represented by: Niklas Kimmerle</p>
+<h2 id="2-the-short-version">2. The short version</h2>
+<p>Gallery shows and organizes the photos and videos on your phone. Your
+photos, faces, object labels and photo locations are processed
+<strong>only on your device</strong>. We have no server, no user
+accounts, no advertising and no analytics of our own, and we never
+receive your photos or any data derived from them.</p>
+<p>Three technical connections to third parties exist (see section
+5):</p>
+<ol type="1">
+<li><strong>Google Play</strong> — purchases and subscriptions.</li>
+<li><strong>Google ML Kit</strong> — the on-device recognition software
+sends technical diagnostics (no image content) to Google. This only
+starts after you agree in the app, and you can withdraw your agreement
+at any time (section 5.2).</li>
+<li><strong>OpenFreeMap</strong> — map data, only when you open the Map
+tab.</li>
+</ol>
+<h2 id="3-data-processed-on-your-device-only">3. Data processed on your
+device only</h2>
+<p>The following data is created and stored in the app's private storage
+on your device. We have no access to it, it is never transmitted to us,
+and it is not included in Android cloud backups or device-to-device
+transfers (backup is disabled for the app):</p>
+<ul>
+<li>Photo and video metadata (file name, date, size, album, favorites,
+trash state), read through Android's MediaStore.</li>
+<li>Face detection results and numerical face descriptors ("embeddings")
+used to group similar faces, and the names and groupings you assign.
+Face descriptors can qualify as biometric data. They are computed on
+your device, stay in the app's private database, are only used to group
+faces inside the app, and are never transmitted.</li>
+<li>Object labels (e.g. "dog", "beach") computed on your device by an
+on-device model.</li>
+<li>GPS coordinates read from your photos' metadata to place them on the
+Map tab. They are only used locally; they are not sent to the map
+provider (see 5.3).</li>
+<li>Your purchase status (cached locally so that the app works
+offline).</li>
+</ul>
+<p><strong>Our role.</strong> The app is software that you run on your
+own device to look at your own photos. Because we neither receive nor
+can access this content, we do not decide on the purposes and means of
+processing it and are therefore not the controller for it. You decide
+which photos the app may access (including selected photos only on
+Android 14 and later) and you can delete the derived data at any
+time:</p>
+<ul>
+<li><strong>Menu → Settings → Reset face groups</strong> deletes all
+detected faces, descriptors, groupings and person names.</li>
+<li><strong>Menu → Settings → Reset object search</strong> deletes the
+object-label index.</li>
+<li>Clearing the app data in Android settings or uninstalling the app
+deletes everything the app has stored.</li>
+</ul>
+<p>Please keep in mind that photos can show other people. If you use the
+app beyond purely personal or household purposes, you are responsible
+for complying with data protection law yourself.</p>
+<h2 id="4-permissions">4. Permissions</h2>
+<ul>
+<li><strong>Photos and videos</strong> (<code>READ_MEDIA_IMAGES</code>,
+<code>READ_MEDIA_VIDEO</code>,
+<code>READ_MEDIA_VISUAL_USER_SELECTED</code>, on Android 12 and older
+<code>READ_EXTERNAL_STORAGE</code>): to show and organize your library.
+On Android 14 and later you may grant access to selected items
+only.</li>
+<li><strong>Media location</strong>
+(<code>ACCESS_MEDIA_LOCATION</code>): to read the GPS position stored in
+your photos for the Map tab. The app does <strong>not</strong> request
+access to your device's current location.</li>
+<li><strong>Notifications</strong> (<code>POST_NOTIFICATIONS</code>): to
+show progress while the on-device index is built. Optional.</li>
+<li><strong>Internet and network state</strong> (<code>INTERNET</code>,
+<code>ACCESS_NETWORK_STATE</code>): for map data, Google Play billing
+and ML Kit diagnostics (section 5).</li>
+<li><strong>Background work</strong> (<code>WAKE_LOCK</code>,
+<code>RECEIVE_BOOT_COMPLETED</code>, <code>FOREGROUND_SERVICE</code>):
+Android's WorkManager uses these to continue the on-device index when
+the screen is off or after a restart. Nothing is transmitted in the
+process.</li>
+<li><strong>Vibration</strong> (<code>VIBRATE</code>): used by
+notifications.</li>
+<li><strong>Billing</strong> (<code>com.android.vending.BILLING</code>):
+to buy and verify the subscription or the lifetime purchase through
+Google Play.</li>
+</ul>
+<p>You can withdraw permissions at any time in the Android system
+settings.</p>
+<h2 id="5-recipients-and-third-party-services">5. Recipients and
+third-party services</h2>
+<h3 id="51-google-play-purchases">5.1 Google Play (purchases)</h3>
+<p>Subscriptions and the lifetime purchase are sold and paid for through
+Google Play. You conclude the purchase contract and the payment with
+Google (Google Commerce Limited, Dublin, Ireland); we do not see your
+payment details. The Google Play app on your device tells our app which
+products you own (product, validity) so that the app can be unlocked. As
+the app provider we may additionally see order information in the Google
+Play Console (e.g. order number, product, date, country, amount, refund
+or cancellation status). Google processes your data as an independent
+controller; the data protection information of Google applies (<a
+href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>).
+Legal basis for our part: Art. 6(1)(b) GDPR (performance of the purchase
+and licence contract) and Art. 6(1)(c) GDPR (accounting
+obligations).</p>
+<h3 id="52-google-ml-kit-face-detection-and-image-labeling">5.2 Google
+ML Kit (face detection and image labeling)</h3>
+<p>The ML models run on your device. Face detection and image labeling
+are <strong>optional</strong>: they only run after you enable on-device
+AI in the app (Settings) and consent to this notice. Until then the ML
+Kit software library is not initialised and transmits nothing. Once
+enabled, it sends technical diagnostic and usage data to Google over
+HTTPS: device information (manufacturer, model, OS version, build,
+available ML accelerators), app package name and version, a
+per-installation identifier, performance metrics, API configuration
+(e.g. image format and size), event types and error codes. Google states
+that this identifier is not intended to identify a user or a physical
+device and that the data is not shared with third parties. <strong>No
+image content, faces, labels or locations are sent.</strong> Your IP
+address is necessarily visible to Google when the data is transmitted.
+Google offers no supported switch to disable this transmission; you stay
+in control by not enabling (or disabling) on-device AI. Details: <a
+href="https://developers.google.com/ml-kit/android-data-disclosure">https://developers.google.com/ml-kit/android-data-disclosure</a>.</p>
+<p>Legal basis: your consent (Art. 6(1)(a) GDPR and § 25(1) TDDDG) for
+enabling the feature, and Art. 6(1)(f) GDPR for the technical
+diagnostics described there while the feature is enabled; § 25(2) no. 2
+TDDDG covers the local storage itself. The diagnostic data is limited to
+technical information without content. <strong>Withdrawal:</strong> at
+any time under Menu → Settings → About on-device AI → Withdraw consent.
+Afterwards no further scans are started and ML Kit is not initialised
+again; an already running app process may keep the library active until
+you close the app. Withdrawal does not affect the lawfulness of
+processing up to that point, and you can delete the data already created
+on your device as described in section 3. Google may process data in the
+USA on the basis of the EU–US Data Privacy Framework and standard
+contractual clauses. For the device access by the library, see section
+7.</p>
+<h3 id="53-openfreemap-map-data">5.3 OpenFreeMap (map data)</h3>
+<p>Only when you open the Map tab, the app loads map data (map style,
+tiles, symbols and fonts) directly from OpenFreeMap (<a
+href="https://openfreemap.org">https://openfreemap.org</a>, operated by
+Hyperknot Software Kft., Hungary, using the Cloudflare content delivery
+network). This transmits your IP address and request metadata (requested
+map area, time, app and system information) to these providers. The
+requested map area reveals the region you are viewing, but
+<strong>not</strong> your photos or their coordinates. According to its
+privacy statement (<a
+href="https://openfreemap.org/privacy/">https://openfreemap.org/privacy/</a>),
+OpenFreeMap uses no cookies or tracking, does not store IP addresses in
+its regular access logs, may log IP addresses in error logs for up to 7
+days, and may temporarily log IP addresses for up to 30 days during
+security incidents. Cloudflare may process connection data as described
+in its own privacy policy.</p>
+<p>Legal basis: Art. 6(1)(b) GDPR (providing the map function you
+requested). If you do not want this connection, do not open the Map tab.
+Map data © OpenStreetMap contributors, licensed under the ODbL.</p>
+<p>We do not use any other analytics, crash reporting, advertising or
+tracking services. We do not sell data.</p>
+<h2 id="6-retention">6. Retention</h2>
+<p>Data in the app is kept until you delete it with the in-app functions
+(section 3), clear the app data or uninstall the app. Order data in the
+Google Play Console is kept by us as long as accounting law requires (up
+to 10 years). Data held by Google and OpenFreeMap is kept according to
+their respective policies.</p>
+<h2 id="7-access-to-information-on-your-device--25-tdddg">7. Access to
+information on your device (§ 25 TDDDG)</h2>
+<p>The app stores information on your device (databases, preferences,
+purchase status) only to the extent necessary to provide the functions
+you have requested (§ 25(2) no. 2 TDDDG). We do not use cookies,
+advertising IDs or tracking technologies. If — and only after — you
+enable on-device AI, the ML Kit library mentioned in section 5.2 reads
+technical device information and keeps a per-installation identifier for
+the diagnostics described there; this takes place inside the library and
+serves exclusively the technical operation of the recognition functions
+you use. Until you enable it, the library is not initialised.</p>
+<h2 id="8-your-rights">8. Your rights</h2>
+<p>You have the right to access (Art. 15), rectification (Art. 16),
+erasure (Art. 17), restriction (Art. 18), data portability (Art. 20),
+and the right to object to processing based on legitimate interests
+(Art. 21 GDPR). We hold no personal data from the app itself; we can
+therefore only answer requests regarding the data described in sections
+5 and 9, for example our order data and your emails to us. Requests
+regarding data held by Google or OpenFreeMap must be directed to them.
+To exercise your rights towards us, email <a
+href="mailto:datenschutz@nizent.de">datenschutz@nizent.de</a>. If you
+have given consent, you can withdraw it at any time with effect for the
+future — for the on-device AI (section 5.2) directly in the app under
+Menu → Settings → About on-device AI.</p>
+<p>You also have the right to lodge a complaint with a data protection
+supervisory authority, in particular in your member state of residence,
+your place of work or the place of the alleged infringement, or at the
+authority responsible for us: Der Landesbeauftragte für den Datenschutz
+und die Informationsfreiheit Baden-Württemberg (LfDI Baden-Württemberg),
+Prof. Dr. Tobias Keber, Heilbronner Straße 35, 70191 Stuttgart.</p>
+<h2 id="9-contact-by-email">9. Contact by email</h2>
+<p>If you write to us, we process your email address and message to
+answer you and, where applicable, to handle your order (Art. 6(1)(b)
+GDPR; otherwise Art. 6(1)(f) GDPR, legitimate interest in answering
+enquiries). We delete it once the matter is settled and no statutory
+retention duty (e.g. commercial and tax law, up to 10 years)
+applies.</p>
+<h2 id="10-provision-of-data-automated-decisions">10. Provision of data,
+automated decisions</h2>
+<p>Providing data is not required by law or contract; without photo
+permission the app cannot show your library. There is no automated
+decision-making or profiling that has legal or similarly significant
+effects on you.</p>
+<h2 id="11-children">11. Children</h2>
+<p>The app is not directed at children and the Play Store listing
+targets adults. Purchases may only be made by persons with the legal
+capacity to do so. We do not knowingly collect data from children.</p>
+<h2 id="12-changes">12. Changes</h2>
+<p>We may update this policy when the app or the law changes. The
+current version is always available at <a
+href="privacy_policy.html">https://nizent.de/gallery/privacy_policy.html</a>
+and in the app under Menu → Legal &amp; about.</p>
+</body>
+</html>

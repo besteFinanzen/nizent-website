@@ -3,7 +3,15 @@
  * sectionIndexAt() maps a normalized scroll progress (0..1) to the active
  * section index. Keep this in sync with the choreography in IsometricCube.
  */
-export const SECTION_IDS = ["home", "mpg", "dlrg", "about", "services", "contact"] as const;
+export const SECTION_IDS = [
+  "home",
+  "mpg",
+  "dlrg",
+  "gallery",
+  "about",
+  "services",
+  "contact",
+] as const;
 
 export function sectionIndexAt(p: number, marks: number[]): number {
   const n = marks.length;

@@ -1,8 +1,8 @@
 "use client";
 
 /*
- * Projects section — showcase of the MPG school app: screenshots, feature list
- * and a PhoneMockup. Copy is pulled from i18n (de/en).
+ * Projects section — showcases of the shipped apps (MPG, DLRG, Gallery):
+ * screenshots, feature list and a PhoneMockup. Copy is pulled from i18n (de/en).
  */
 
 import { motion, type Variants } from "framer-motion";
@@ -27,6 +27,21 @@ const DLRG_SHOTS = [
   "/screenshots/dlrg/screenshot4.webp",
   "/screenshots/dlrg/screenshot5.webp",
 ];
+
+const GALLERY_SHOTS = [
+  "/screenshots/gallery/01_pictures.webp",
+  "/screenshots/gallery/02_viewer.webp",
+  "/screenshots/gallery/03_albums.webp",
+  "/screenshots/gallery/04_search.webp",
+  "/screenshots/gallery/05_album.webp",
+];
+
+/*
+ * Google Play listing of the Gallery app (de.nizent.gallery.app). Empty for
+ * now: the button renders as disabled ("coming soon") until the URL is set —
+ * paste the play.google.com link here on release day.
+ */
+const GALLERY_PLAY_URL = "";
 
 const rise = (delay = 0): Variants => ({
   hidden: { opacity: 0, y: 44 },
@@ -235,6 +250,33 @@ export default function ProjectsScene() {
           {t("dlrg.playstore")}
         </StoreButton>
         <StoreButton>{t("dlrg.appstore")}</StoreButton>
+        <StoreButton href="https://neuffen-beuren.dlrg.de/app-informationen/app-datenschutz">
+          {t("dlrg.legal")}
+        </StoreButton>
+      </ProjectShowcase>
+
+      <ProjectShowcase
+        id="gallery"
+        index="03"
+        badge={t("gallery.badge")}
+        title={t("gallery.title")}
+        desc={t("gallery.desc")}
+        features={[
+          t("gallery.feature1"),
+          t("gallery.feature2"),
+          t("gallery.feature3"),
+          t("gallery.feature4"),
+        ]}
+        shots={GALLERY_SHOTS}
+        icon="/screenshots/gallery/icon.webp"
+        alt="Gallery App Screenshot"
+      >
+        <StoreButton href={GALLERY_PLAY_URL || undefined} primary>
+          {GALLERY_PLAY_URL ? t("gallery.playstore") : t("gallery.playstoreSoon")}
+        </StoreButton>
+        {/* Explicit index.html: Next dev (and hosts without directory indexes)
+            would 404 / redirect `/gallery/` instead of serving the file. */}
+        <StoreButton href="/gallery/index.html">{t("gallery.legal")}</StoreButton>
       </ProjectShowcase>
     </>
   );

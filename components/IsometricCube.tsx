@@ -48,7 +48,7 @@ const PIECES: PieceDef[] = [
   { pts: [[794, 950.48], [354, 696.45], [354, 465.51], [794, 719.54]], color: "#0b3f60", emissive: "#062033" },
 ];
 
-// Cube state at each section (order: home, mpg, dlrg, about, services, contact)
+// Cube state at each section (order: home, mpg, dlrg, gallery, about, services, contact)
 interface Params {
   x: number;
   y: number;
@@ -60,12 +60,13 @@ const SECTION_PARAMS: Params[] = [
   { x: 0, y: 1.1, s: 0.72, spread: 0 },      // home — floats above the headline
   { x: -3.15, y: 0, s: 0.38, spread: 0 },    // mpg — peeks from the left edge
   { x: 3.15, y: 0, s: 0.38, spread: 0 },     // dlrg — peeks from the right edge
+  { x: -3.15, y: 0, s: 0.38, spread: 0 },    // gallery — peeks from the left edge
   { x: 0, y: 0.1, s: 0.8, spread: 1 },       // about — fully exploded
   { x: -3.2, y: 0, s: 0.38, spread: 0 },     // services — peeks from the left edge
   { x: 3.2, y: 0, s: 0.36, spread: 0 },      // contact — reassembled at the right edge
 ];
 
-const FALLBACK_MARKS = [0.06, 0.26, 0.46, 0.64, 0.8, 0.95];
+const FALLBACK_MARKS = [0.06, 0.24, 0.4, 0.55, 0.7, 0.84, 0.95];
 
 function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;

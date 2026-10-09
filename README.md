@@ -38,7 +38,7 @@ nizent-website/
 │   ├── IsometricCube.tsx    # the logo, rebuilt piece-by-piece + scroll choreography
 │   ├── CubeCanvas.tsx       # R3F canvas: cube, shards, sound-reactive particles
 │   ├── HeroScene.tsx        # hero (title chips, scroll hint)
-│   ├── ProjectsScene.tsx    # MPG app showcase + PhoneMockup
+│   ├── ProjectsScene.tsx    # MPG / DLRG / Gallery app showcases + PhoneMockup
 │   ├── AboutScene.tsx       # mission, pillars, stats
 │   ├── ServicesScene.tsx     # services list
 │   ├── ContactScene.tsx     # contact form + footer (posts to the mailer)
@@ -55,7 +55,8 @@ nizent-website/
 ├── public/
 │   ├── assets/…mp3          # background music file
 │   ├── logo.svg / favicon   # brand assets
-│   └── screenshots/         # project imagery
+│   ├── screenshots/         # project imagery (screenshots/gallery/ = store shots)
+│   └── gallery/             # standalone legal HTML served at nizent.de/gallery/*
 ├── mailer/                  # contact-form backend (separate deployable app)
 │   ├── server.js            # Express endpoint (POST /send, GET /health)
 │   ├── package.json

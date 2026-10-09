@@ -1,4 +1,5 @@
 import { settings } from "./settings";
+import { SECTION_IDS } from "./sections";
 
 /*
  * Sound engine for the nizent site.
@@ -327,7 +328,7 @@ export const sfx = {
    * no audible effect; it is kept for API compatibility and future use.
    */
   setMood(i: number) {
-    currentMoodIdx = Math.max(0, Math.min(5, i));
+    currentMoodIdx = Math.max(0, Math.min(SECTION_IDS.length - 1, i));
   },
   /** Debug snapshot. */
   stats() {

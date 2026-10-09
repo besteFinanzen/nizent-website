@@ -63,7 +63,7 @@ export default function ContactScene() {
           transition={{ duration: 0.8 }}
           className="mb-14 text-center"
         >
-          <Eyebrow index="05" label={t("contact.badge")} />
+          <Eyebrow index="06" label={t("contact.badge")} />
           <h2 className="mt-5 font-display text-4xl font-bold tracking-tight text-silver-light md:text-5xl">
             {t("contact.title")}
           </h2>

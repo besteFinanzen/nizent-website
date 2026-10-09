@@ -44,7 +44,7 @@ export default function AboutScene() {
           transition={{ duration: 0.8 }}
           className="mb-16 text-center"
         >
-          <Eyebrow index="03" label="nizent" />
+          <Eyebrow index="04" label="nizent" />
           <h2 className="mt-5 font-display text-4xl font-bold tracking-tight text-silver-light md:text-5xl">
             {t("about.title")}
           </h2>

@@ -18,7 +18,7 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 await page.goto(base, { waitUntil: "load" });
 await page.waitForTimeout(3000);
 
-const targets = (process.env.SECTIONS || "home,mpg,dlrg,about,services,contact").split(",");
+const targets = (process.env.SECTIONS || "home,mpg,dlrg,gallery,about,services,contact").split(",");
 
 for (const id of targets) {
   await page.evaluate((id) => {

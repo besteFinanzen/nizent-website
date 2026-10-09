@@ -103,7 +103,7 @@ export default function ServicesScene() {
           transition={{ duration: 0.8 }}
           className="mb-16 text-center"
         >
-          <Eyebrow index="04" label={t("services.badge")} />
+          <Eyebrow index="05" label={t("services.badge")} />
           <h2 className="mt-5 font-display text-4xl font-bold tracking-tight text-silver-light md:text-5xl">
             {t("services.title")}
           </h2>
