@@ -249,7 +249,9 @@ export default function ProjectsScene() {
         <StoreButton href="https://play.google.com/store/apps/details?id=de.dlrg.nb.bytecave" primary>
           {t("dlrg.playstore")}
         </StoreButton>
-        <StoreButton>{t("dlrg.appstore")}</StoreButton>
+        <StoreButton href="https://apps.apple.com/de/app/dlrg-neuffen-beuren/id6751463655">
+          {t("dlrg.appstore")}
+        </StoreButton>
         <StoreButton href="https://neuffen-beuren.dlrg.de/app-informationen/app-datenschutz">
           {t("dlrg.legal")}
         </StoreButton>
