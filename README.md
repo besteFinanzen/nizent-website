@@ -55,7 +55,7 @@ nizent-website/
 ├── public/
 │   ├── assets/…mp3          # background music file
 │   ├── logo.svg / favicon   # brand assets
-│   ├── screenshots/         # project imagery (screenshots/gallery/ = store shots)
+│   ├── screenshots/         # project imagery: mpg/ (light+dark), dlrg/, gallery/ (store shots)
 │   └── gallery/             # standalone legal HTML served at nizent.de/gallery/*
 ├── mailer/                  # contact-form backend (separate deployable app)
 │   ├── server.js            # Express endpoint (POST /send, GET /health)
@@ -66,6 +66,18 @@ nizent-website/
 ├── Dockerfile / nginx.conf  # site image (static export → nginx)
 └── AGENTS.md                # AI-oriented quickstart (read this for agent onboarding)
 ```
+
+### Scroll sections
+
+Seven of them, in order (`lib/sections.ts`):
+
+```
+home → mpg → dlrg → gallery → about → services → contact
+```
+
+Adding one means updating `SECTION_IDS`, `Navbar`, `DotNav`, `IsometricCube`
+(`SECTION_PARAMS` + `FALLBACK_MARKS`), the `Eyebrow` indices in the section
+components, and **both** `de`/`en` blocks in `lib/i18n.tsx`.
 
 ---
 
@@ -164,6 +176,39 @@ mail over SMTP. See `mailer/README.md` for the endpoint contract and env vars.
 
 ---
 
+## App showcases & store links (`components/ProjectsScene.tsx`)
+
+Three `ProjectShowcase` blocks — **MPG**, **DLRG**, **Gallery** — each with
+screenshots (`public/screenshots/{mpg,dlrg,gallery}/`, WebP), a feature list and
+store/legal buttons:
+
+| Showcase | Buttons (in order) |
+| -------- | ------------------ |
+| MPG | website `mpg-app.de` · Google Play `de.bytecave.mpg` · App Store `id1672365754` |
+| DLRG | Google Play `de.dlrg.nb.bytecave` (primary) · App Store `id6751463655` · "Rechtliches" → external DLRG page |
+| Gallery | Google Play `GALLERY_PLAY_URL` (primary) · "Rechtliches" → `/gallery/index.html` |
+
+- The Gallery Play Store button is driven by the `GALLERY_PLAY_URL` constant at the
+  top of `ProjectsScene.tsx`. It is **empty for now**, so the button renders
+  disabled as "Google Play — demnächst / coming soon"; paste the
+  `play.google.com` URL there on release day and it flips to a live link.
+- The Gallery "Rechtliches" button points at `/gallery/index.html` — the explicit
+  file name matters (a bare `/gallery/` 404s/redirects on hosts without directory
+  indexes, including `next dev`).
+- Screenshots are WebP (kept small for page weight); new ones should be WebP too.
+
+### Gallery legal pages (`public/gallery/*.html`)
+
+Standalone, pandoc-generated HTML with inline CSS (copied from
+`GalleryApp/design/store/legal/html/`) served at `nizent.de/gallery/*`:
+`index.html` (hub) → `impressum.html`, `datenschutz.html`, `agb.html` (de) and
+`privacy_policy.html`, `terms.html` (en). They are **not** React pages — edit them
+by regenerating from the GalleryApp source, and keep the file names (the store
+`.md` files link to `privacy_policy.html` with an underscore). Cross-links inside
+them are relative, so they work both on `nizent.de` and when opened from disk.
+
+---
+
 ## Deployment (Dokploy)
 
 Two separate apps:
@@ -182,8 +227,10 @@ DNS: point `nizent.de` (and `www`) at the site, `contact-api.nizent.de` at the m
 
 ## Notes / caveats
 
-- **Legal pages are placeholders.** `app/impressum` and `app/datenschutz` use
-  bracketed `[…]` copy — replace with real Impressum/Datenschutz before launch.
+- **Site legal pages are placeholders.** `app/impressum` and `app/datenschutz`
+  use bracketed `[…]` copy — replace with real Impressum/Datenschutz before
+  launch. The Gallery app's legal pages under `public/gallery/` are finished
+  copy (see above), only the React pages are pending.
 - The cube choreography (`IsometricCube.tsx`) is computed so the extruded pieces
   always meet flush at the section boundaries. If you change the geometry, keep
   the centroid-relative extrusion (`geo.translate(0,0,-DEPTH/2)`).
