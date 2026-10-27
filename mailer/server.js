@@ -40,7 +40,7 @@ for (const p of [join(__dirname, ".env"), join(__dirname, "..", ".env")]) {
       if (process.env[key] === undefined) process.env[key] = val;
     }
   } catch {
-    /* no .env at this path — that's fine */
+    /* no .env at this path -that's fine */
   }
 }
 

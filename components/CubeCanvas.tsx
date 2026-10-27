@@ -98,7 +98,7 @@ function SoundParticles() {
     p.rotation.y = t * P.driftSpeed;
     p.rotation.x = Math.sin(t * 0.03) * 0.1;
     if (matRef.current) {
-      // barely-there breathing with the music — non-disturbing
+      // barely-there breathing with the music -non-disturbing
       matRef.current.opacity =
         P.opacityBase + frameLevel.high * P.opacityHighGain + frameLevel.mid * P.opacityMidGain;
       matRef.current.size = P.sizeBase + frameLevel.mid * P.sizeBoost;

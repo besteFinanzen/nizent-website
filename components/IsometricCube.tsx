@@ -57,13 +57,13 @@ interface Params {
 }
 
 const SECTION_PARAMS: Params[] = [
-  { x: 0, y: 1.1, s: 0.72, spread: 0 },      // home — floats above the headline
-  { x: -3.15, y: 0, s: 0.38, spread: 0 },    // mpg — peeks from the left edge
-  { x: 3.15, y: 0, s: 0.38, spread: 0 },     // dlrg — peeks from the right edge
-  { x: -3.15, y: 0, s: 0.38, spread: 0 },    // gallery — peeks from the left edge
-  { x: 0, y: 0.1, s: 0.8, spread: 1 },       // about — fully exploded
-  { x: -3.2, y: 0, s: 0.38, spread: 0 },     // services — peeks from the left edge
-  { x: 3.2, y: 0, s: 0.36, spread: 0 },      // contact — reassembled at the right edge
+  { x: 0, y: 1.1, s: 0.72, spread: 0 },      // home -floats above the headline
+  { x: -3.15, y: 0, s: 0.38, spread: 0 },    // mpg -peeks from the left edge
+  { x: 3.15, y: 0, s: 0.38, spread: 0 },     // dlrg -peeks from the right edge
+  { x: -3.15, y: 0, s: 0.38, spread: 0 },    // gallery -peeks from the left edge
+  { x: 0, y: 0.1, s: 0.8, spread: 1 },       // about -fully exploded
+  { x: -3.2, y: 0, s: 0.38, spread: 0 },     // services -peeks from the left edge
+  { x: 3.2, y: 0, s: 0.36, spread: 0 },      // contact -reassembled at the right edge
 ];
 
 const FALLBACK_MARKS = [0.06, 0.24, 0.4, 0.55, 0.7, 0.84, 0.95];
@@ -77,7 +77,7 @@ function smooth(u: number) {
 }
 
 // Region i = [b[i], b[i+1]] settles at P[i]: each transition completes within
-// the first ~22% of the region, then the exact params are held — the cube is
+// the first ~22% of the region, then the exact params are held -the cube is
 // always fully settled (and perfectly flush) before the user rests anywhere.
 function paramsAt(p: number, marks: number[]): Params {
   const P = SECTION_PARAMS;
@@ -140,7 +140,7 @@ function Piece({ def, index }: { def: PieceDef; index: number }) {
     shape.closePath();
 
     const geo = new THREE.ExtrudeGeometry(shape, { depth: DEPTH, bevelEnabled: false });
-    // Shape coords are already centroid-relative — only center the extrusion depth.
+    // Shape coords are already centroid-relative -only center the extrusion depth.
     geo.translate(0, 0, -DEPTH / 2);
 
     const edgeGeo = new THREE.EdgesGeometry(geo, 10);
@@ -183,7 +183,7 @@ function Piece({ def, index }: { def: PieceDef; index: number }) {
     edge.rotation.copy(mesh.rotation);
 
     if (matRef.current) {
-      // gentle glow that breathes with the bass — subtle, never distracting
+      // gentle glow that breathes with the bass -subtle, never distracting
       matRef.current.emissiveIntensity =
         settings.visuals.cube.emissiveBase + frameLevel.bass * settings.visuals.cube.emissiveBoost;
     }

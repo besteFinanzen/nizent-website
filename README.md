@@ -1,4 +1,4 @@
-# Nizent-website — portfolio site
+# Nizent-website -portfolio site
 
 A single-page, scroll-driven portfolio for **Nizent** (custom-software developer).
 It pairs a React/Three.js "isometric cube" logo hero with a sketch/construction-line
@@ -126,14 +126,14 @@ fully-documented, typed shape. Highlights:
 | `visuals.cube.*` | Reactive cube emissive / edge-line glow |
 | `mail.*` | SMTP (placeholders), recipient, CORS origin, rate limit, honeypot |
 
-Editing `settings.json` changes behaviour at build time — no code edits needed.
+Editing `settings.json` changes behaviour at build time -no code edits needed.
 
 ### Design tokens
 
 Colors and fonts are defined as CSS custom properties in `app/globals.css`
 (`@theme`): `navy`, `steel`, `cyan`, `silver`, `silver-light`, `space`,
 `space-light`, plus the `Space Grotesk` / `Inter` font variables. Don't add a
-global CSS reset — Tailwind v4 utilities already handle base styles, and an
+global CSS reset -Tailwind v4 utilities already handle base styles, and an
 extra reset previously clobbered utility classes.
 
 ### Internationalization
@@ -178,7 +178,7 @@ mail over SMTP. See `mailer/README.md` for the endpoint contract and env vars.
 
 ## App showcases & store links (`components/ProjectsScene.tsx`)
 
-Three `ProjectShowcase` blocks — **MPG**, **DLRG**, **Gallery** — each with
+Three `ProjectShowcase` blocks -**MPG**, **DLRG**, **Gallery** -each with
 screenshots (`public/screenshots/{mpg,dlrg,gallery}/`, WebP), a feature list and
 store/legal buttons:
 
@@ -190,9 +190,9 @@ store/legal buttons:
 
 - The Gallery Play Store button is driven by the `GALLERY_PLAY_URL` constant at the
   top of `ProjectsScene.tsx`. It is **empty for now**, so the button renders
-  disabled as "Google Play — demnächst / coming soon"; paste the
+  disabled as "Google Play -demnächst / coming soon"; paste the
   `play.google.com` URL there on release day and it flips to a live link.
-- The Gallery "Rechtliches" button points at `/gallery/index.html` — the explicit
+- The Gallery "Rechtliches" button points at `/gallery/index.html` -the explicit
   file name matters (a bare `/gallery/` 404s/redirects on hosts without directory
   indexes, including `next dev`).
 - Screenshots are WebP (kept small for page weight); new ones should be WebP too.
@@ -202,7 +202,7 @@ store/legal buttons:
 Standalone, pandoc-generated HTML with inline CSS (copied from
 `GalleryApp/design/store/legal/html/`) served at `nizent.de/gallery/*`:
 `index.html` (hub) → `impressum.html`, `datenschutz.html`, `agb.html` (de) and
-`privacy_policy.html`, `terms.html` (en). They are **not** React pages — edit them
+`privacy_policy.html`, `terms.html` (en). They are **not** React pages -edit them
 by regenerating from the GalleryApp source, and keep the file names (the store
 `.md` files link to `privacy_policy.html` with an underscore). Cross-links inside
 them are relative, so they work both on `nizent.de` and when opened from disk.
@@ -213,10 +213,10 @@ them are relative, so they work both on `nizent.de` and when opened from disk.
 
 Two separate apps:
 
-1. **Site** — build with the root `Dockerfile` (Next build → `out/` → nginx).
+1. **Site** -build with the root `Dockerfile` (Next build → `out/` → nginx).
    Deploy on `nizent.de` / `www.nizent.de`. The `nginx.conf` handles SPA fallback
    and asset caching.
-2. **Mailer** — build with `mailer/Dockerfile` (Node + Express). Deploy on
+2. **Mailer** -build with `mailer/Dockerfile` (Node + Express). Deploy on
    `contact-api.nizent.de` (or another subdomain) and set the SMTP + recipient
    environment variables (see `mailer/.env.example`). `settings.json` supplies
    non-secret defaults; **secrets (`SMTP_USER`, `SMTP_PASS`) come from env only**.
@@ -228,7 +228,7 @@ DNS: point `nizent.de` (and `www`) at the site, `contact-api.nizent.de` at the m
 ## Notes / caveats
 
 - **Site legal pages are placeholders.** `app/impressum` and `app/datenschutz`
-  use bracketed `[…]` copy — replace with real Impressum/Datenschutz before
+  use bracketed `[…]` copy -replace with real Impressum/Datenschutz before
   launch. The Gallery app's legal pages under `public/gallery/` are finished
   copy (see above), only the React pages are pending.
 - The cube choreography (`IsometricCube.tsx`) is computed so the extruded pieces

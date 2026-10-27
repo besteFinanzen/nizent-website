@@ -1,7 +1,7 @@
 "use client";
 
 /*
- * Projects section — showcases of the shipped apps (MPG, DLRG, Gallery):
+ * Projects section -showcases of the shipped apps (MPG, DLRG, Gallery):
  * screenshots, feature list and a PhoneMockup. Copy is pulled from i18n (de/en).
  */
 

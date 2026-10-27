@@ -1,7 +1,7 @@
 "use client";
 
 /*
- * Top navigation bar — brand, section links (scrollToId), language toggle and
+ * Top navigation bar -brand, section links (scrollToId), language toggle and
  * sound toggle. Fixed; gains a blur/solid background once the user scrolls.
  */
 

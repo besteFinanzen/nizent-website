@@ -1,7 +1,7 @@
 "use client";
 
 /*
- * Services section — the offerings list with scroll-linked reveals.
+ * Services section -the offerings list with scroll-linked reveals.
  */
 
 import { useRef } from "react";

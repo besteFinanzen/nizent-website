@@ -21,7 +21,7 @@ Content-Type `application/json`:
 - `name`     ≤ 120 chars, required
 - `email`    simple email check, ≤ 200 chars, required
 - `message`  5–5000 chars, required
-- `company`  **honeypot** — hidden field. If filled, the request is silently
+- `company`  **honeypot** -hidden field. If filled, the request is silently
   accepted (`{ "ok": true }`) without sending mail (catches bots).
 
 Responses:
@@ -40,7 +40,7 @@ endpoint. `OPTIONS /send` handles the preflight.
 
 ### `GET /health`
 
-`{ "ok": true }` — for uptime probes.
+`{ "ok": true }` -for uptime probes.
 
 ---
 
@@ -52,7 +52,7 @@ service also has built-in defaults. **Configuration precedence (highest wins):
 real environment variables  >  `.env` file  >  `settings.json` defaults.**
 
 The service loads `.env` from its own directory (and the repo root, if run from
-there) at startup using a tiny built-in parser — no extra dependency needed.
+there) at startup using a tiny built-in parser -no extra dependency needed.
 This means you can set `SMTP_*` (and the other) settings in a `.env` file
 instead of (or on top of) platform environment variables.
 
@@ -66,8 +66,8 @@ instead of (or on top of) platform environment variables.
 | `SMTP_HOST` | `mail.smtp.host` | **Required** to send |
 | `SMTP_PORT` | `mail.smtp.port` (`587`) | |
 | `SMTP_SECURE` | `mail.smtp.secure` (`false`) | `true` for port 465 |
-| `SMTP_USER` | `mail.smtp.user` | **Secret** — use env |
-| `SMTP_PASS` | `mail.smtp.pass` | **Secret** — use env |
+| `SMTP_USER` | `mail.smtp.user` | **Secret** -use env |
+| `SMTP_PASS` | `mail.smtp.pass` | **Secret** -use env |
 
 > Never commit real SMTP credentials. Put them in a local `.env` file (already
 > gitignored) or in the deployment environment (e.g. Dokploy). See

@@ -1,7 +1,7 @@
 "use client";
 
 /*
- * About section — mission statement, the three pillars (Precision / Impact /
+ * About section -mission statement, the three pillars (Precision / Impact /
  * Reliable) and stats. The cube is fully "exploded" here.
  */
 
@@ -62,7 +62,7 @@ export default function AboutScene() {
           />
         </motion.div>
 
-        {/* Three pillars — the three faces of the logo cube */}
+        {/* Three pillars -the three faces of the logo cube */}
         <motion.div
           variants={parent}
           initial="hidden"

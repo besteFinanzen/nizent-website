@@ -142,7 +142,7 @@ export default function ContactScene() {
                   placeholder={t("contact.form.message")}
                   className="field resize-none"
                 />
-                {/* honeypot — hidden from humans, catches bots */}
+                {/* honeypot -hidden from humans, catches bots */}
                 <input
                   type="text"
                   name="company"

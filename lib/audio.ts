@@ -12,7 +12,7 @@ import { SECTION_IDS } from "./sections";
  *   UI/interaction sounds ─▶ fxBus ─▶ master   (independent of the music-bed level)
  *   master ─▶ analyser (passive tap, feeds the sound-reactive visuals)
  *
- * The background music bed is intentionally STATIC — it does not change between
+ * The background music bed is intentionally STATIC -it does not change between
  * sections (see settings.audio.music). Interaction (UI) sounds are synthesized
  * on the fly. `sfx.level()` exposes a smoothed {bass,mid,high} readout that the
  * 3D scene uses for subtle reactive glow/particles; it returns zeros when sound
@@ -113,12 +113,12 @@ function buildGraph(c: AudioContext) {
   freqData = new Uint8Array(new ArrayBuffer(analyser.frequencyBinCount));
   master!.connect(analyser);
 
-  // interaction / UI sounds bus — independent of the music-bed level
+  // interaction / UI sounds bus -independent of the music-bed level
   fxBus = c.createGain();
   fxBus.gain.value = FX.busGain;
   fxBus.connect(master!);
 
-  // background music bed (static — same in every section)
+  // background music bed (static -same in every section)
   musicFilter = c.createBiquadFilter();
   musicFilter.type = "lowpass";
   musicFilter.frequency.value = M.cutoff;

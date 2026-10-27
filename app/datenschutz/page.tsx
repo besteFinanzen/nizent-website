@@ -2,7 +2,7 @@
 
 /*
  * Legal: Datenschutzerklärung (German, legally binding) + English translation
- * (non-binding). Identity fields are placeholders ([...]) — fill before going live.
+ * (non-binding). Identity fields are placeholders ([...]) -fill before going live.
  */
 
 import { motion } from "framer-motion";
@@ -180,7 +180,7 @@ export default function Datenschutz() {
             <div className="eyebrow mb-4">
               <span className="eb-dot" />
               <span className="eb-rule" />
-              <span className="eb-text">English — non-binding</span>
+              <span className="eb-text">English -non-binding</span>
             </div>
 
             <h2 className="font-display text-3xl font-bold text-silver-light mb-6">

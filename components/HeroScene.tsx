@@ -35,7 +35,7 @@ export default function HeroScene() {
       id="home"
       className="relative z-10 flex min-h-screen flex-col items-center justify-end px-6 pb-28 text-center"
     >
-      {/* Headline — word-by-word rise (the 3D logo cube floats above).
+      {/* Headline -word-by-word rise (the 3D logo cube floats above).
           initial is gated so the entrance plays once on first mount and is
           NOT replayed when the language changes (which can add/remove words). */}
       <motion.h1
